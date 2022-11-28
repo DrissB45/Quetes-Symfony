@@ -1,13 +1,9 @@
 @import "~bootstrap/scss/bootstrap";
 
-$primary: #490A60;
-$secondary: 0E0E0E;
-
-$theme-colors: (
-  "primary": $primary,
-  "danger": $danger
-);
-
 body {
-    background-color: rgb(184, 189, 181);
+    background-color: #0E0E0E;
+}
+
+.navbar {
+    background-color: #490A60;
 }
