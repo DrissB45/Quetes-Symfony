@@ -1,7 +1,8 @@
 @import "~bootstrap/scss/bootstrap";
 
-body {
-    background-color: #0E0E0E;
+:root {
+    --bs-body-color: #f7f7f7;
+    --bs-body-bg: #0E0E0E;
 }
 
 .navbar {
