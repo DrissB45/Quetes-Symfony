@@ -8,15 +8,15 @@ use Doctrine\Persistence\ObjectManager;
 
 class CategoryFixtures extends Fixture
 {
-    private const CATEGORIES = ['Action', 'Aventure', 'Animation', 'Fantastique', 'Horreur'];
+    public const CATEGORIES = ['Action', 'Aventure', 'Animation', 'Fantastique', 'Horreur'];
 
     public function load(ObjectManager $manager)
     {
-        foreach (self::CATEGORIES as $categoryName) {
+        foreach (self::CATEGORIES as $categoryKey => $categoryName) {
             $category = new Category();
             $category->setName($categoryName);
             $manager->persist($category);
-            $this->addReference('categorie_' . $categoryName, $category);
+            $this->addReference('category_' . $categoryKey, $category);
         }
         $manager->flush();
     }
