@@ -13,8 +13,8 @@ class SeasonFixtures extends Fixture implements DependentFixtureInterface
     {
         $categoryKey = 0;
         foreach (CategoryFixtures::CATEGORIES as $categoryKey => $categoryName) {
-            for ($i = 0; $i < 25; $i++) { //25 = 5 séries fois 5 saisons
-                for ($j = 0; $j < 5; $j++) { // 5 = 5 saisons
+            for ($i = 0; $i < 3; $i++) { //1 boucle pour créer 5 séries d'un coup
+                for ($j = 0; $j < 5; $j++) { // 5 saisons par série
                     $season = new Season();
                     $season->setNumber($j + 1);
                     $season->setYear(2015 + 1);
