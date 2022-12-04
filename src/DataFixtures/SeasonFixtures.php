@@ -19,7 +19,7 @@ class SeasonFixtures extends Fixture implements DependentFixtureInterface
             for ($i = 0; $i < 3; $i++) { //1 boucle pour créer 5 séries d'un coup
                 for ($j = 0; $j < 5; $j++) { // 5 saisons par série
                     $season = new Season();
-                    $season->setNumber($faker->numberBetween(1, 5));
+                    $season->setNumber($j + 1);
                     $season->setYear($faker->year());
                     $season->setDescription($faker->paragraphs(3, true));
                     $program = $this->getReference('category_' . $categoryKey  . '_program_' . $i);
