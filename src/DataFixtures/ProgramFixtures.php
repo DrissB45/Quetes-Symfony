@@ -18,7 +18,7 @@ class ProgramFixtures extends Fixture implements DependentFixtureInterface
             for ($i = 0; $i < 3; $i++) {
                 $program = new Program();
                 $program->setTitle('Série stylée');
-                $program->setSynopsis('Synopsis de la série');
+                $program->setSynopsis($faker->paragraphs(1, true));
                 $category = $this->getReference('category_' . $categoryKey);
                 $program->setCategory($category);
                 $manager->persist($program);
