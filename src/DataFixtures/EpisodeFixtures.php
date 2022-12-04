@@ -6,6 +6,7 @@ use App\Entity\Episode;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
+use Faker\Factory;
 
 class EpisodeFixtures extends Fixture implements DependentFixtureInterface
 {
@@ -13,6 +14,8 @@ class EpisodeFixtures extends Fixture implements DependentFixtureInterface
 
     public function load(ObjectManager $manager): void
     {
+        $faker = Factory::create();
+        
         foreach (CategoryFixtures::CATEGORIES as $categoryKey => $categoryName) {
             for ($i = 0; $i < 3; $i++) {
                 for ($j = 0; $j < 5; $j++) {
@@ -20,7 +23,7 @@ class EpisodeFixtures extends Fixture implements DependentFixtureInterface
                         $episode = new Episode();
                         $episode->setTitle('Titre de l\'épisode');
                         $episode->setNumber($k + 1);
-                        $episode->setSynopsis('Synopsis de l\'épisode');
+                        $episode->setSynopsis($faker->paragraphs(1, true));
                         $season = $this->getReference('category_' . $categoryKey . '_program_' . $i . '_season_' . $j);
                         $episode->setSeason($season);
                         $manager->persist($episode);
