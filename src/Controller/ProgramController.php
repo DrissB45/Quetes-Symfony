@@ -2,13 +2,14 @@
 
 namespace App\Controller;
 
+use App\Entity\Season;
 use App\Entity\Episode;
 use App\Entity\Program;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\SeasonRepository;
+use App\Repository\ProgramRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Repository\ProgramRepository;
-use App\Repository\SeasonRepository;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/program', name: 'program_')]
 class ProgramController extends AbstractController
@@ -51,7 +52,7 @@ class ProgramController extends AbstractController
         ]);
     }
 
-    #[Route('/{program<^[0-9]+$>}/season/{season<^[0-9]+$>}/{episode<^[0-9]+$>}', name: 'season_show')]
+    #[Route('/{program<^[0-9]+$>}/season/{season<^[0-9]+$>}/episode/{episode<^[0-9]+$>}', name: 'episode_show')]
     public function showEpisode(Program $program, Season $season, Episode $episode): Response
     {
         if (!$program) {

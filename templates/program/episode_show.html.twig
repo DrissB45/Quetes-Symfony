@@ -14,8 +14,8 @@
 		</div>
 
 		<div class="media">
-			<h1>Épisode
-				{{ episode.number }}</h1>
+			<a href="{{ path("program_episode_show", { program: program.id, season: season.id, episode: episode.id}) }}">Épisode
+				{{ episode.number }}</a>
 			<p>{{ episode.synopsis }}</p>
 		</div>
 	</div>
