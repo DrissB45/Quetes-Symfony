@@ -35,6 +35,7 @@ class ProgramController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $programRepository->save($program, true);
+            $this->addFlash('success', 'La nouvelle série a été créée !');
 
             return $this->redirectToRoute('program_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -80,10 +81,21 @@ class ProgramController extends AbstractController
                 'No program with id : ' . $program . ' found in program\'s table.'
             );
         }
-        return $this->render('program/season_show.html.twig', [
+        return $this->render('program/episode_show.html.twig', [
             'program' => $program,
             'season' => $season,
             'episode' => $episode
         ]);
+    }
+
+    #[Route('/{id}', name: 'app_program_delete', methods: ['POST'])]
+    public function delete(Request $request, Program $program, ProgramRepository $programRepository): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$program->getId(), $request->request->get('_token'))) {
+            $programRepository->remove($program, true);
+            $this->addFlash('danger', 'La saison a été supprimée !');
+        }
+
+        return $this->redirectToRoute('app_program_index', [], Response::HTTP_SEE_OTHER);
     }
 }

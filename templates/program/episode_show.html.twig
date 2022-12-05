@@ -8,14 +8,13 @@
 		<img class="align-self-start mr-3" src="{{program.poster}}" alt="{{ program.title }} poster">
 		<div class="media-body">
 			<h2 class="mt-0">Program
-				{{ program.name }}</h2>
+				{{ program.title }}</h2>
 			<h3>Saison
 				{{ season.number }}</h3>
 		</div>
 
 		<div class="media">
-			<a href="{{ path("program_episode_show", { program: program.id, season: season.id, episode: episode.id}) }}">Épisode
-				{{ episode.number }}</a>
+			<h2>Épisode{{ episode.number }}</h2>
 			<p>{{ episode.synopsis }}</p>
 		</div>
 	</div>
