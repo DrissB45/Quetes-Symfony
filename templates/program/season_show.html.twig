@@ -15,7 +15,7 @@
 		<div class="media">
 			<h1>Liste des épisodes</h1>
             {% for episode in season.episodes %}
-			<h3>{{episode.number}}</h3>
+			<a href="{{ path("program_episode_show", { program: program.id, season: season.id, episode: episode.id }) }}">{{episode.number}}</a>
 			<p>{{episode.synopsis}}</p>
             {% endfor %}
 		</div>
