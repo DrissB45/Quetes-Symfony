@@ -15,7 +15,7 @@ class ProgramFixtures extends Fixture implements DependentFixtureInterface
         $faker = Factory::create();
 
         foreach (CategoryFixtures::CATEGORIES as $categoryKey => $categoryTitle) {
-            for ($i = 0; $i < 3; $i++) {
+            for ($i = 0; $i < 3; $i++) { // 3 programmes par catégories
                 $program = new Program();
                 $program->setTitle('Série stylée');
                 $program->setSynopsis($faker->paragraphs(1, true));

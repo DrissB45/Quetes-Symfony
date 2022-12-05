@@ -14,7 +14,7 @@ class EpisodeType extends AbstractType
         $builder
             ->add('title')
             ->add('number')
-            ->add('synopsis')
+            ->add('synopsis', TextType::class)
             ->add('season', null, ['choice_label' => 'number'])
         ;
     }
