@@ -6,12 +6,18 @@ use Faker\Factory;
 use App\Entity\Actor;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Symfony\Component\String\Slugger\SluggerInterface;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
 class ActorFixtures extends Fixture implements DependentFixtureInterface
 {
     public const ACTOR_NUMBER = 10;
     public const ACTORS_BY_SERIES = 3;
+
+    public function __construct(SluggerInterface $slugger)
+    {
+        $this->slugger = $slugger;
+    }
 
     public function load(ObjectManager $manager): void
     {

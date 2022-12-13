@@ -19,7 +19,13 @@ class ProgramType extends AbstractType
             ->add('synopsis', TextType::class)
             ->add('poster')
             ->add('category', null, ['choice_label' => 'name'])
-        ;
+            ->add('actors', EntityType::class, [
+                'class' => Actor::class,
+                'choice_label' => 'name',
+                'multiple' => true,
+                'expanded' => true,
+                'by_reference' => false,
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
@@ -29,4 +35,3 @@ class ProgramType extends AbstractType
         ]);
     }
 }
-    
