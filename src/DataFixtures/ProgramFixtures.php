@@ -13,6 +13,8 @@ class ProgramFixtures extends Fixture implements DependentFixtureInterface
 {
     public const PROGRAM_NUMBER = 3;
 
+    private SluggerInterface $slugger;
+
     public function __construct(SluggerInterface $slugger)
     {
         $this->slugger = $slugger;
@@ -27,6 +29,8 @@ class ProgramFixtures extends Fixture implements DependentFixtureInterface
                 $program = new Program();
                 $program->setTitle($faker->sentence(2, true));
                 $program->setSynopsis($faker->paragraphs(1, true));
+                $slug = $this->slugger->slug($program->getTitle());
+                $program->setSlug($slug);
                 $category = $this->getReference('category_' . $categoryKey);
                 $program->setCategory($category);
                 $this->addReference('category_' . $categoryKey  . '_program_' . $i, $program);
