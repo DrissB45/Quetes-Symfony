@@ -10,7 +10,7 @@
 			<h1 class="mt-0">{{ category[0].name }}</h1>
 			{% for program in programs %}
 				<p>{{ program.id }}</p>
-				<a href="{{ path('program_show', {'id': program.id}) }}">{{ program.title }}</a>
+				<a href="{{ path('program_show', {'slug': program.slug}) }}">{{ program.title }}</a>
 				<p>{{ program.synopsis }}</p>
 			{% endfor %}
 		</div>

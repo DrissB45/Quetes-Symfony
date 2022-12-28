@@ -5,21 +5,21 @@
 
 {% block body %}
 	<div class="media">
-		<img class="align-self-start mr-3" src="{{program.poster}}" alt="{{ program.title }} poster">
+		<img class="align-self-start mr-3" src="{{ vich_uploader_asset(program) }}" alt="{{ program.title }} poster">
 		<div class="media-body">
-			<h2 class="mt-0">Program
-				{{ program.title }}</h2>
-			<h3>Saison
-				{{ season.number }}</h3>
+			<h1 class="mt-0">
+				{{ program.title }}</h1>
+			<h2>Saison
+				{{ season.number }}</h2>
 		</div>
 
 		<div class="media">
-			<h2>Épisode{{ episode.number }}</h2>
+			<h3>Épisode{{ episode.number }}</h3>
 			<p>{{ episode.synopsis }}</p>
 		</div>
 	</div>
 
-	<a href="{{ path('program_index') }}">
-		Retour à la liste des programmes
+	<a href="{{ path('program_season_show', {program: program.id, season: season.id }) }}">
+		Retour à la liste des épisodes
 	</a>
 {% endblock %}

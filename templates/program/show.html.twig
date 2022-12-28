@@ -8,14 +8,16 @@
 		<img class="align-self-start mr-3" src="{{ vich_uploader_asset(program) }}" alt="{{ program.title }} poster">
 		<div class="media-body">
 			<h1 class="mt-0">{{ program.title }}</h1>
+			<h3>Synopsis :</h3>
 			<p>{{ program.synopsis }}</p>
+			<h3>Saisons :</h3>
 			{% for season in program.seasons %}
 				<a href="{{ path("program_season_show", { program: program.id, season: season.id }) }}">{{ season.number }}</a>
 			{% endfor %}
-			<p>Catégorie :
-				{{ program.category.name }}</p>
-				<p>Durée :
-				{{ programDuration }}</p>
+			<h3>Catégorie :</h3>
+				<p>{{ program.category.name }}</p>
+				<h3>Durée :</h3>
+				<p>{{ programDuration }}</p>
 		</div>
 	</div>
 
