@@ -19,6 +19,10 @@
 		</div>
 	</div>
 
+	{% if app.user %}
+		<a href="{{ path('app_comment') }}">Ajouter un commentaire</a>
+	{% endif %}
+
 	<a href="{{ path('program_season_show', {program: program.id, season: season.id }) }}">
 		Retour à la liste des épisodes
 	</a>
