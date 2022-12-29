@@ -26,4 +26,16 @@
 	<a href="{{ path('program_season_show', {program: program.id, season: season.id }) }}">
 		Retour à la liste des épisodes
 	</a>
+
+		<h3>Commentaires :</h3>
+	<ul>
+		{% for comment in comments %}
+			<p>Auteur : {{ comment.author.email }}</p>
+			<em>Commentaire : {{ comment.comment }}</em>
+			<p>Note : {{ comment.rate }}</p>
+		{% else %}
+			<li>Aucun commentaire pour cette série</li>
+		{% endfor %}
+	</ul>
+
 {% endblock %}

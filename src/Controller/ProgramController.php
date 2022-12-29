@@ -3,9 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Season;
+use App\Entity\Comment;
 use App\Entity\Episode;
 use App\Entity\Program;
 use App\Form\ProgramType;
+use App\Repository\CommentRepository;
 use App\Service\ProgramDuration;
 use Symfony\Component\Mime\Email;
 use App\Repository\ProgramRepository;
@@ -95,17 +97,20 @@ class ProgramController extends AbstractController
     }
 
     #[Route('/{program<^[0-9]+$>}/season/{season<^[0-9]+$>}/episode/{episode<^[0-9]+$>}', name: 'episode_show')]
-    public function showEpisode(Program $program, Season $season, Episode $episode): Response
+    public function showEpisode(Program $program, Season $season, Episode $episode, CommentRepository $commentRepository): Response
     {
+        $comments = $commentRepository->findBy(['episode' => $episode]);
+
         if (!$program) {
             throw $this->createNotFoundException(
                 'No program with id : ' . $program . ' found in program\'s table.'
             );
         }
         return $this->render('program/episode_show.html.twig', [
+            'comments' => $comments,
             'program' => $program,
             'season' => $season,
-            'episode' => $episode
+            'episode' => $episode,
         ]);
     }
 
