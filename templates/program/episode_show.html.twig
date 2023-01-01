@@ -4,6 +4,8 @@
 {% endblock %}
 
 {% block body %}
+{{ dump(app.user.roles) }}
+
 	<div class="media">
 		<img class="align-self-start mr-3" src="{{ vich_uploader_asset(program) }}" alt="{{ program.title }} poster">
 		<div class="media-body">
@@ -19,23 +21,33 @@
 		</div>
 	</div>
 
+	<h3>Commentaires :</h3>
+	<div class="container-fluid">
+		<div class="row justify-content-evenly">
+			{% for comment in comments %}
+				<div class="col-sm-5 my-3">
+					<p>Auteur :
+						{{ comment.author.email }}</p>
+					<em>Commentaire :
+						{{ comment.comment }}</em>
+					<p>Note :
+						{{ comment.rate }}</p>
+				</div>
+				{% if is_granted("ROLE_ADMIN") or ("ROLE_CONTRIBUTOR") %}
+					<div class="col-sm-5 my-3">
+						<a href="{{ path('comment_delete', { id: comment.id }) }}">{{ include('comment/_delete_form.html.twig') }}</a>
+					
+					</div>
+				{% endif %}
+			{% endfor %}
+		</div>
+	</div>
+
 	{% if app.user %}
-		<a href="{{ path('app_comment') }}">Ajouter un commentaire</a>
+		<a href="{{ path('comment_new') }}">Ajouter un commentaire</a>
 	{% endif %}
 
 	<a href="{{ path('program_season_show', {program: program.id, season: season.id }) }}">
 		Retour à la liste des épisodes
 	</a>
-
-		<h3>Commentaires :</h3>
-	<ul>
-		{% for comment in comments %}
-			<p>Auteur : {{ comment.author.email }}</p>
-			<em>Commentaire : {{ comment.comment }}</em>
-			<p>Note : {{ comment.rate }}</p>
-		{% else %}
-			<li>Aucun commentaire pour cette série</li>
-		{% endfor %}
-	</ul>
-
 {% endblock %}

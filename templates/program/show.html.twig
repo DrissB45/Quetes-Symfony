@@ -15,9 +15,9 @@
 				<a href="{{ path("program_season_show", { program: program.id, season: season.id }) }}">{{ season.number }}</a>
 			{% endfor %}
 			<h3>Catégorie :</h3>
-				<p>{{ program.category.name }}</p>
-				<h3>Durée :</h3>
-				<p>{{ programDuration }}</p>
+			<p>{{ program.category.name }}</p>
+			<h3>Durée :</h3>
+			<p>{{ programDuration }}</p>
 		</div>
 	</div>
 
@@ -29,6 +29,11 @@
 			<li>Aucun acteur pour cette série</li>
 		{% endfor %}
 	</ul>
+
+{# On met un bouton "Éditer" qui s'affiche que lorsque l'user est reconnu comme admin #}
+	{% if is_granted("ROLE_ADMIN") %}
+		<a href="{{ path('program_edit', { 'slug': program.slug} ) }}">Éditer</a>
+	{% endif %}
 
 	<a href="{{ path('program_index') }}">
 		Retour à la liste des programmes

@@ -26,6 +26,7 @@ class UserFixtures extends Fixture
             'motdepasse'
         );
         $contributor->setPassword($hashedPassword);
+        $this->addReference('contributor', $contributor);
         $manager->persist($contributor);
 
         $admin = new User();

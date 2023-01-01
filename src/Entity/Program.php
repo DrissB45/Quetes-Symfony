@@ -66,6 +66,9 @@ class Program
     #[ORM\Column(length: 255)]
     private ?string $slug = null;
 
+    #[ORM\ManyToOne(inversedBy: 'programs')]
+    private ?User $owner = null;
+
 
     public function __construct()
     {
@@ -98,10 +101,10 @@ class Program
     public function setSynopsis(string $synopsis): self
     {
         $this->synopsis = $synopsis;
-
+        
         return $this;
     }
-
+    
     public function getPoster(): ?string
     {
         return $this->poster;
@@ -129,7 +132,7 @@ class Program
     {
         return $this->slug;
     }
-
+    
     public function setSlug(string $slug): self
     {
         $this->slug = $slug;
@@ -151,7 +154,19 @@ class Program
     {
         return $this->posterFile;
     }
+    
+    public function getOwner(): ?User
+    {
+        return $this->owner;
+    }
 
+    public function setOwner(?User $owner): self
+    {
+        $this->owner = $owner;
+
+        return $this;
+    }
+    
     /**
      * @return Collection<int, Season>
      */
@@ -209,4 +224,5 @@ class Program
 
         return $this;
     }
+
 }

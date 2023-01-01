@@ -17,6 +17,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 #[Route('/program', name: 'program_')]
 class ProgramController extends AbstractController
@@ -49,6 +50,7 @@ class ProgramController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $slug = $slugger->slug($program->getTitle());
             $program->setSlug($slug);
+            $program->setOwner($this->getUser());
             $programRepository->save($program, true);
             $this->addFlash('success', 'La nouvelle série a été créée !');
             $email = (new Email())
@@ -119,6 +121,12 @@ class ProgramController extends AbstractController
     {
         $form = $this->createForm(ProgramType::class, $program);
         $form->handleRequest($request);
+
+        // On vérifie si l'user connecté est le owner du programme
+        if ($this->getUser() !== $program->getOwner()) {
+            // S'il n'est pas owner = erreur 403
+            throw $this->createAccessDeniedException('Only the owner can edit the program !');
+        }
 
         if ($form->isSubmitted() && $form->isValid()) {
             $programRepository->save($program, true);
