@@ -4,7 +4,7 @@
 {% endblock %}
 
 {% block body %}
-{{ dump(app.user.roles) }}
+{{ dump(app.user) }}
 
 	<div class="media">
 		<img class="align-self-start mr-3" src="{{ vich_uploader_asset(program) }}" alt="{{ program.title }} poster">
