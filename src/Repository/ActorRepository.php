@@ -39,6 +39,17 @@ class ActorRepository extends ServiceEntityRepository
         }
     }
 
+    public function findLikeName(string $name)
+    {
+        $queryBuilder = $this->createQueryBuilder('a') //p = alias SQL, 1ère lettre de Program
+            ->where('a.name LIKE :name') // Attention : c'est la propriété title de l'entité Program. Rien à voir avec la table en BDD
+            ->setParameter('name', '%' . $name . '%') // Équivalent de bindValue()
+            ->orderBy('a.name', 'ASC')
+            ->getQuery();
+    
+        return $queryBuilder->getResult();
+    }
+
 //    /**
 //     * @return Actor[] Returns an array of Actor objects
 //     */

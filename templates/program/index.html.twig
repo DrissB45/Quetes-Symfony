@@ -14,8 +14,11 @@
     {% else %}
         Aucune série trouvée.
     {% endfor %}
+    <h2>Une série en particulier ?</h2>
+    {{ include('program/_form.html.twig') }}
 
     <a href="{{ path('app_index') }}">
         Retour à l'accueil
     </a>
+
 {% endblock %}

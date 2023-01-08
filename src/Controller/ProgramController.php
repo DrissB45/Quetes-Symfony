@@ -7,9 +7,10 @@ use App\Entity\Comment;
 use App\Entity\Episode;
 use App\Entity\Program;
 use App\Form\ProgramType;
-use App\Repository\CommentRepository;
+use App\Form\SearchProgramType;
 use App\Service\ProgramDuration;
 use Symfony\Component\Mime\Email;
+use App\Repository\CommentRepository;
 use App\Repository\ProgramRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Mailer\MailerInterface;
@@ -30,13 +31,21 @@ class ProgramController extends AbstractController
     }
 
     #[Route('/', name: 'index')]
-    public function index(ProgramRepository $programRepository): Response
+    public function index(Request $request, ProgramRepository $programRepository): Response
     {
-        $programs = $programRepository->findAll();
+        $form = $this->createForm(SearchProgramType::class);
+        $form->handleRequest($request);
 
-        return $this->render('program/index.html.twig', [
-            'website' => 'Wild Series',
-            'programs' => $programs
+        if ($form->isSubmitted() && $form->isValid()) {
+            $search = $form->getData()['Programme'];
+            $programs = $programRepository->findLikeName($search);
+        } else {
+            $programs = $programRepository->findAll();
+        }
+
+        return $this->renderForm('program/index.html.twig', [
+            'programs' => $programs,
+            'form' => $form
         ]);
     }
 
