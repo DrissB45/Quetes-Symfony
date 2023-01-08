@@ -18,6 +18,9 @@
 			<p>{{ program.category.name }}</p>
 			<h3>Durée :</h3>
 			<p>{{ programDuration }}</p>
+			<a href="{{ path('program_watchlist', {id: program.id}) }}">
+				<i class="bi {{ app.user.isInWatchlist(program) ? 'bi-heart-fill' : 'bi-heart' }}"></i>
+			</a>
 		</div>
 	</div>
 
@@ -30,7 +33,7 @@
 		{% endfor %}
 	</ul>
 
-{# On met un bouton "Éditer" qui s'affiche que lorsque l'user est reconnu comme admin #}
+	{# On met un bouton "Éditer" qui s'affiche que lorsque l'user est reconnu comme admin #}
 	{% if is_granted("ROLE_ADMIN") %}
 		<a href="{{ path('program_edit', { 'slug': program.slug} ) }}">Éditer</a>
 	{% endif %}
