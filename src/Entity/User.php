@@ -201,7 +201,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function removeWatchlist(Program $program): self
+    public function removeFromWatchlist(Program $program): self
     {
         $this->watchlist->removeElement($program);
 

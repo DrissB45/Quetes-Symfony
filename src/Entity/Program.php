@@ -250,7 +250,7 @@ class Program
     public function removeViewer(User $viewer): self
     {
         if ($this->viewers->removeElement($viewer)) {
-            $viewer->removeWatchlist($this);
+            $viewer->removeFromWatchlist($this);
         }
 
         return $this;
