@@ -3,22 +3,22 @@
 {% block title %}All programs{% endblock %}
 
 {% block body %}
-    <h1>Toutes les séries : </h1>
+    <h1>{{ 'allprograms'|trans }}</h1>
     {% for program in programs %}
         <div>
             <h2>{{ loop.index }} / {{ program.title }} - Catégorie : {{ program.category.name }}</h2>
             <p>{{ program.synopsis }}</p>
             {# Lien vers la fiche de la série : #}
-            <a href="{{ path("program_show", { slug: program.slug }) }}">Voir la fiche</a>
+            <a href="{{ path("program_show", { slug: program.slug }) }}">{{ 'seedetails'|trans }}</a>
         </div>
     {% else %}
         Aucune série trouvée.
     {% endfor %}
-    <h2>Une série en particulier ?</h2>
+    <h2>{{ 'programinparticular'|trans }}</h2>
     {{ include('program/_form.html.twig') }}
 
     <a href="{{ path('app_index') }}">
-        Retour à l'accueil
+        {{ 'backhome'|trans }}
     </a>
 
 {% endblock %}

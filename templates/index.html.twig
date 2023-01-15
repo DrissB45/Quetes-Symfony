@@ -1,14 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Wild Series{% endblock %}
+{% block title %}Wild Series
+{% endblock %}
 
 {% block body %}
-<h1 class="text-white">{{'welcome'|trans}}</h1>
-<div>
-    <a href={{path('app_login')}}>{{ 'account.sign_in'|trans }}</a>
-    <a href={{path('app_register')}}>{{ 'account.register'|trans }}</a>
-</div>
+	<h1 class="text-white">{{'welcome'|trans}}</h1>
+	<div>
+		<a href={{path('app_login')}}>{{ 'account.sign_in'|trans }}</a>
+		<a href={{path('app_register')}}>{{ 'account.register'|trans }}</a>
+	</div>
 
-<a type="button" class="btn btn-primary btn-lg" href="{{ path('program_index') }}">Accédez à toutes nos séries</a>
-
+	<a type="button" class="btn btn-primary btn-lg" href="{{ path('program_index') }}">Accédez à toutes nos séries</a>
 {% endblock %}

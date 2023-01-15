@@ -4,3 +4,10 @@ controllers:
     prefix: /{_locale}
     requirements:
         _locale: fr|en
+
+redirect_to_homepage: 
+    # redirection to /{_locale}/ when url is only /
+    path: /
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController
+    defaults:
+        route: app_index

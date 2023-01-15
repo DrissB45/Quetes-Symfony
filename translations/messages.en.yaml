@@ -1,5 +1,12 @@
-# "dictionnaire" pour l'anglais
 welcome: Welcome
-account:
-    sign_in: Sign In
-    register: Create Account
+account.sign_in: 'Sign In'
+account.register: 'Create Account'
+hello_username: 'Hello %username%'
+account.logout: 'Log out'
+account.login: 'Log in'
+season: Season
+allprograms: All programs
+seedetails: See Details
+programinparticular: Looking for a program in particular ?
+backhome: Back home
+allcategories: All categories
